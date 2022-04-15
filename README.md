@@ -6,21 +6,19 @@ Make your live easier with DustDream
 
 
 
-## Authors
-
-- [@rakhazs]()
-
-
 ## Installation
 
 run with
 
 ```bash
-  npm install && npm run dev
-```
-```bash
   composer install
+  npm install 
+  npm run dev
   php artisan serve
 ```
 
     
+## Authors
+
+- [@rakhazs](https://www.google.com/)
+
