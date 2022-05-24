@@ -8,7 +8,28 @@
 @import '~bootstrap/scss/bootstrap';
 
 footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: 0.35rem;
+}
+
+.border-left {
+  border-left: 0.25rem solid #44c5c9 !important;
 }

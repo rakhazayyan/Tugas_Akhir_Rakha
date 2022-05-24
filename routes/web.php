@@ -1,27 +1,52 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\HomeController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\DustController;
+use App\Http\Controllers\NoiseController;
+use App\Http\Controllers\LuxController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    //allow register
+    'register'  => true,
+]);
 
-Route::get('/document/download-{fileName}', [DocumentController::class, 'download'])->name('document.download');
-Route::resource('document', DocumentController::class);
+// Dust Measurement
+Route::controller(DustController::class)->group(function () {
+    Route::prefix('dust-measurement')->group(function () {
+        Route::name('dustMeasurement.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/monitoring', 'monitoring')->name('monitoring');
+            Route::get('/document', 'document')->name('document');
+            Route::get('/document/create', 'createDocument')->name('createDocument')->middleware('auth');
+            Route::post('/document/store', 'storeDocument')->name('storeDocument')->middleware('auth');
+            Route::get('/document/delete-{id}', 'deleteDocument')->name('deleteDocument')->middleware('auth');
+            Route::get('/document/download-{fileName}', 'downloadDocument')->name('downloadDocument');
+        });
+    });
+});
 
-Route::get('/monitoring', [HomeController::class, 'monitoring'])->name('monitoring');
+// Noise Measurement
+Route::controller(NoiseController::class)->group(function () {
+    Route::prefix('noise-measurement')->group(function () {
+        Route::name('noiseMeasurement.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/monitoring', 'monitoring')->name('monitoring');
+            Route::get('/history', 'history')->name('history');
+        });
+    });
+});
+
+// Lux Measurement
+Route::controller(LuxController::class)->group(function () {
+    Route::prefix('lux-measurement')->group(function () {
+        Route::name('luxMeasurement.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/monitoring', 'monitoring')->name('monitoring');
+            Route::get('/history', 'history')->name('history');
+        });
+    });
+});

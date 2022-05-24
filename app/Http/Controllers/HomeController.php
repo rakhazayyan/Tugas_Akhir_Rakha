@@ -14,11 +14,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('fileData.index');
-    }
-
-    public function monitoring()
-    {
-        return view('monitoring.index');
+        return view('welcome');
     }
 }
