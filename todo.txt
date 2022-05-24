@@ -1,0 +1,11 @@
+https://randomnerdtutorials.com/esp32-esp8266-mysql-database-php/
+
+
+pengukur kebisingan
+1. halaman monitor
+2. halaman informasi  convert pdf
+
+pengukur intensitas cahaya
+1. halaman monitoring
+    tampilkan 3 nilai terakhir hasil pengukuran
+2. halaman informasi + pagination conver pdf
